@@ -130,17 +130,21 @@ const ScrollFrames: React.FC<ScrollFramesProps> = ({ containerRef }) => {
   }, [loaded, containerRef]);
 
   useEffect(() => {
+    let resizeTimeout: ReturnType<typeof setTimeout>;
     const handleResize = () => {
-      if (canvasRef.current) {
-        const dpr = window.devicePixelRatio || 1;
-        const width = canvasRef.current.clientWidth;
-        const height = canvasRef.current.clientHeight;
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (canvasRef.current) {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR for performance
+          const width = canvasRef.current.clientWidth;
+          const height = canvasRef.current.clientHeight;
 
-        canvasRef.current.width = width * dpr;
-        canvasRef.current.height = height * dpr;
+          canvasRef.current.width = width * dpr;
+          canvasRef.current.height = height * dpr;
 
-        renderFrame(Math.round(frameRef.current.frame));
-      }
+          renderFrame(Math.round(frameRef.current.frame));
+        }
+      }, 100);
     };
 
     handleResize();
@@ -160,7 +164,7 @@ const ScrollFrames: React.FC<ScrollFramesProps> = ({ containerRef }) => {
       <canvas
         ref={canvasRef}
         className={`w-full h-full transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        style={{ imageRendering: 'auto' }}
+        style={{ imageRendering: 'auto', willChange: 'transform' }}
       />
       {!loaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-transparent z-20">

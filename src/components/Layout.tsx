@@ -33,9 +33,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   return (
-    <div className="relative min-h-screen bg-[#0B0807] overflow-x-hidden font-sans selection:bg-[#F3E5D8]/30 text-[#F3E5D8] scroll-smooth">
+    <div className="relative min-h-[100dvh] bg-[#0B0807] overflow-x-hidden font-sans selection:bg-[#F3E5D8]/30 text-[#F3E5D8] scroll-smooth">
       {/* Shared Background Layer */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 overflow-hidden">
         <motion.div style={{ y }} className="absolute inset-0">
           <video
             ref={videoRef}
@@ -44,13 +44,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             loop
             playsInline
             preload="auto"
-            className="w-full h-full object-cover opacity-90 scale-115"
+            className="w-full h-full object-cover opacity-90 scale-125 will-change-transform"
           >
             <source src="/Video_Ready_After_Subscription.mp4" type="video/mp4" />
             <source src="https://drive.google.com/uc?id=1Mke-5tFLM4AKd40fHP0mL-uHHK_LLCJ3&export=download" type="video/mp4" />
           </video>
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-[#0B0807] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#0B0807] z-10" />
         <div className="absolute inset-0 opacity-40 radial-atmosphere z-5" />
       </div>
 

@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center">
       {/* Section 1: Hero */}
-      <section id="hero" className="flex flex-col items-center text-center px-6 min-h-screen justify-center relative w-full pt-32 md:pt-20">
+      <section id="hero" className="flex flex-col items-center text-center px-6 min-h-[100dvh] justify-center relative w-full pt-32 md:pt-20">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ export default function Home() {
 
       {/* Philosophy Preview - Sticky Container */}
       <section ref={philosophyRef} className="w-full relative h-[180vh]">
-        <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+        <div className="sticky top-0 h-[100dvh] w-full flex items-center overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
             <motion.div
               initial={{ opacity: 0 }}
